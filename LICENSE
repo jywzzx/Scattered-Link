@@ -1,0 +1,69 @@
+# LANLink 联机助手
+
+MIT License
+
+Copyright (c) 2026 LANLink Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 第三方组件与许可
+
+本项目**分发**以下第三方开源组件，均未修改其源码：
+
+### EasyTier 网络内核
+
+- 项目地址：https://github.com/EasyTier/EasyTier
+- 版权声明：Copyright (c) EasyTier contributors
+- 许可协议：Apache License, Version 2.0
+- 许可证全文：https://www.apache.org/licenses/LICENSE-2.0
+
+本项目使用的组件：
+
+| 组件 | 版本 | 位置 |
+|---|---|---|
+| `easytier-core.exe` | v2.6.4 | `app/engine/` |
+| `easytier-cli.exe` | v2.6.4 | `app/engine/` |
+| `wintun.dll` | 随内核分发 | `app/engine/` |
+| Android 应用（APK） | v2.6.4 | `手机端/LANLink-手机版.apk` |
+
+Apache License 2.0 要求保留原始版权声明与许可声明、标注变更内容。
+本项目对 EasyTier 的改动仅限于**外部封装**（命令行参数组织、进程管理、
+诊断与错误翻译），**未修改内核源码**，因此无标注变更内容之需。
+
+### Java 运行时
+
+- Oracle OpenJDK / Eclipse Temurin，GPLv2 + Classpath Exception
+- 通过 jpackage 打包于 `runtime/` 目录
+
+### 图标与字体
+
+- 图标由本项目脚本生成
+- 界面使用系统字体（微软雅黑）
+
+---
+
+## 商标与免责声明
+
+本项目与 Radmin、樱花穿透、EasyTier 的作者或所属组织无隶属关系，
+亦未获得其背书。文中提及上述名称仅为说明技术方案的对比参照。
+
+本软件仅供个人学习与非商业联机使用。使用者应遵守各游戏的服务条款
+与当地法律法规。使用本软件造成的任何损失，作者不承担责任。

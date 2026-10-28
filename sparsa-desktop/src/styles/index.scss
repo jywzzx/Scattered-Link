@@ -1,0 +1,131 @@
+@use './variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei',
+    'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--sp-text);
+  background: var(--sp-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* 桌面应用不需要文字选中（输入框、可选区域单独放开） */
+body {
+  user-select: none;
+}
+input,
+textarea,
+.selectable,
+.el-table {
+  user-select: text;
+}
+
+a {
+  color: var(--sp-primary);
+  text-decoration: none;
+}
+
+/* ── 滚动条：细、低对比，不抢视觉 ── */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccd4e0;
+  border: 3px solid transparent;
+  border-radius: 6px;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b3bdcb;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── 通用排版工具类 ── */
+.sp-page {
+  padding: 20px 24px 28px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.sp-page-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  letter-spacing: 0.2px;
+}
+
+.sp-page-desc {
+  font-size: 12.5px;
+  color: var(--sp-text-muted);
+  margin: 0 0 18px;
+  line-height: 1.7;
+}
+
+.sp-card {
+  background: var(--sp-bg-elevated);
+  border: 1px solid var(--sp-border);
+  border-radius: var(--sp-radius-lg);
+  box-shadow: var(--sp-shadow-sm);
+}
+
+.sp-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sp-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.sp-muted {
+  color: var(--sp-text-muted);
+}
+
+.sp-mono {
+  font-family: 'JetBrains Mono', 'Cascadia Mono', Consolas, 'Courier New', monospace;
+  font-variant-ligatures: none;
+}
+
+.sp-hint {
+  font-size: 12px;
+  color: var(--sp-text-muted);
+  line-height: 1.7;
+}
+
+.sp-spacer {
+  flex: 1;
+}
+
+/* 让 Element 卡片默认带一点呼吸感 */
+.el-card {
+  border-radius: var(--sp-radius-lg);
+  border-color: var(--sp-border);
+}
+
+.el-table th.el-table__cell {
+  background: var(--sp-bg-sunken) !important;
+  font-weight: 600;
+  color: var(--sp-text-secondary);
+}
+
+.el-form-item__label {
+  font-size: 12.5px;
+  color: var(--sp-text-secondary);
+}

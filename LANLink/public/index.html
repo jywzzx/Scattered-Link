@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LANLink · 异地局域网联机</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg">
+<link rel="stylesheet" href="/static/style.css">
+<meta name="theme-color" content="#4f46e5">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#g1)"/>
+        <path d="M10 12h9a4 4 0 0 1 0 8h-3" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M22 20h-9a4 4 0 0 1 0-8h3" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".75"/>
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="32" y2="32">
+          <stop stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/>
+        </linearGradient></defs>
+      </svg>
+      <div>
+        <h1>LANLink</h1>
+        <p>异地局域网联机 · 无需注册 · 点对点直连</p>
+      </div>
+    </div>
+    <div class="statusbar">
+      <span id="statusPill" class="pill pill-idle">未连接</span>
+      <span id="uptime" class="muted small"></span>
+    </div>
+  </header>
+
+  <main class="grid">
+
+    <section class="card ipcard">
+      <div class="card-head">
+        <h2>本机网络</h2>
+        <button id="refreshNet" class="ghost btn-sm">刷新</button>
+      </div>
+
+      <div class="iplist">
+        <div class="iprow">
+          <span class="label">局域网 IP</span>
+          <code id="lanIp" class="mono">--</code>
+        </div>
+        <div class="iprow">
+          <span class="label">公网 IP</span>
+          <code id="pubIp" class="mono">检测中…</code>
+        </div>
+        <div class="iprow">
+          <span class="label">IPv6</span>
+          <code id="v6Ip" class="mono">--</code>
+        </div>
+        <div class="iprow">
+          <span class="label">NAT 类型</span>
+          <span id="natType" class="tag">--</span>
+        </div>
+      </div>
+
+      <details class="ifaces">
+        <summary>全部网卡地址</summary>
+        <div id="ifaceList" class="iface-list"></div>
+      </details>
+
+      <div class="hint" id="natHint"></div>
+    </section>
+
+    <section class="card actioncard">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="host" role="tab">我做主机</button>
+        <button class="tab" data-tab="join" role="tab">我加入</button>
+      </div>
+
+      <!-- 主机 -->
+      <div class="pane active" id="pane-host">
+        <p class="desc">在跑游戏/服务的那台电脑上启动，然后把这串连接码发给朋友。</p>
+        <div class="field">
+          <label for="servicePort">本地服务端口</label>
+          <input id="servicePort" type="number" min="1" max="65535" placeholder="例如 Minecraft 25565 / 泰拉瑞亚 7777" value="25565">
+        </div>
+        <button id="startHost" class="primary">启动主机</button>
+
+        <div id="hostResult" class="result hidden">
+          <div class="codewrap">
+            <div class="codebox">
+              <code id="connCode" class="mono"></code>
+            </div>
+            <button id="copyCode" class="primary btn-sm">复制连接码</button>
+          </div>
+          <div class="kv">
+            <div><span>隧道端口</span><b id="tunnelPort" class="mono">--</b></div>
+            <div><span>密钥</span><b id="keyHex" class="mono">--</b></div>
+            <div><span>联机方式</span><b id="viaTag">--</b></div>
+          </div>
+          <div class="endpoints">
+            <h3>可用入口</h3>
+            <ul id="epList"></ul>
+          </div>
+          <div class="peers">
+            <h3>已接入的朋友 <span id="peerCount" class="badge">0</span></h3>
+            <ul id="peerList"><li class="empty">等待连接…</li></ul>
+          </div>
+          <button id="stopHost" class="danger">断开</button>
+        </div>
+
+        <div class="warnbox" id="hostWarn"></div>
+      </div>
+
+      <!-- 加入 -->
+      <div class="pane" id="pane-join">
+        <p class="desc">粘贴朋友发来的连接码，进来后在本机访问下面的地址。</p>
+        <div class="field">
+          <label for="joinCode">连接码</label>
+          <textarea id="joinCode" rows="2" placeholder="LANL-xxxxxxxxxxxxxx" spellcheck="false"></textarea>
+        </div>
+        <button id="doJoin" class="primary">连接</button>
+
+        <details class="adv">
+          <summary>高级：手动填写 IP</summary>
+          <div class="grid2">
+            <div class="field"><label>对方 IP</label><input id="mAddress" placeholder="1.2.3.4 或 2001:db8::1"></div>
+            <div class="field"><label>隧道端口</label><input id="mPort" type="number" placeholder="41234"></div>
+            <div class="field"><label>密钥(8位hex)</label><input id="mKey" placeholder="a1b2c3d4"></div>
+            <div class="field"><label>对方服务端口</label><input id="mService" type="number" placeholder="25565"></div>
+          </div>
+          <button id="doJoinManual" class="ghost btn-sm">用以上信息连接</button>
+        </details>
+
+        <div id="joinResult" class="result hidden">
+          <div class="joinok">
+            <div class="big">连上了</div>
+            <p>在本机游戏里输入 <code id="localAddr" class="mono strong"></code></p>
+          </div>
+          <button id="leave" class="danger">断开</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card stats">
+      <div class="stat"><span>上传</span><b id="rateTx">0 B/s</b></div>
+      <div class="stat"><span>下载</span><b id="rateRx">0 B/s</b></div>
+      <div class="stat"><span>活动连接</span><b id="streamCount">0</b></div>
+      <div class="stat"><span>累计流量</span><b id="totals">0 B ↑ / 0 B ↓</b></div>
+    </section>
+
+    <section class="card logcard">
+      <div class="card-head"><h2>运行日志</h2><span class="muted small" id="hostname"></span></div>
+      <div id="log" class="log"></div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

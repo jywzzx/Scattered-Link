@@ -1,0 +1,50 @@
+/**
+ * 设计令牌 + Element Plus 变量覆盖。
+ *
+ * 主题走浅色（桌面工具长时间阅读，浅色更稳），主色取「星蓝」——
+ * 与「散落的星点连成网」的品牌隐喻一致，也避免默认的 Element 蓝过于通用。
+ */
+
+:root {
+  --sp-bg: #f5f7fa;
+  --sp-bg-elevated: #ffffff;
+  --sp-bg-sunken: #eef1f6;
+
+  --sp-text: #1f2733;
+  --sp-text-secondary: #5b6675;
+  --sp-text-muted: #8a94a6;
+
+  --sp-border: #e2e7ef;
+  --sp-border-strong: #cfd7e3;
+
+  --sp-primary: #3b6ef5;
+  --sp-primary-weak: #eaf0ff;
+  --sp-star: #7c5cff;
+
+  --sp-success: #12a150;
+  --sp-warning: #d98200;
+  --sp-danger: #d93a3a;
+
+  --sp-radius: 10px;
+  --sp-radius-lg: 14px;
+
+  --sp-shadow-sm: 0 1px 2px rgba(23, 35, 56, 0.06);
+  --sp-shadow: 0 4px 16px rgba(23, 35, 56, 0.08);
+  --sp-shadow-lg: 0 12px 32px rgba(23, 35, 56, 0.12);
+
+  --sp-sider-w: 208px;
+  --sp-header-h: 56px;
+  --sp-status-h: 30px;
+
+  /* Element Plus 变量接管 */
+  --el-color-primary: var(--sp-primary);
+  --el-color-success: var(--sp-success);
+  --el-color-warning: var(--sp-warning);
+  --el-color-danger: var(--sp-danger);
+  --el-color-error: var(--sp-danger);
+  --el-border-radius-base: 8px;
+  --el-text-color-primary: var(--sp-text);
+  --el-text-color-regular: var(--sp-text-secondary);
+  --el-border-color-light: var(--sp-border);
+  --el-font-size-base: 13px;
+}

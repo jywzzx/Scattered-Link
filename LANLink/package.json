@@ -1,0 +1,16 @@
+{
+  "name": "lanlink",
+  "version": "1.0.0",
+  "description": "LANLink — 无需注册的点对点异地局域网联机工具（UDP 打洞 + 可靠流隧道）",
+  "main": "src/main.js",
+  "bin": { "lanlink": "src/main.js" },
+  "scripts": {
+    "start": "node src/main.js --open",
+    "test": "node --test test/proto.test.js test/ticket.test.js test/stun.test.js test/rstream.test.js test/e2e.test.js test/app.test.js",
+    "perf": "node test/perf.js 8",
+    "live": "node test/live-check.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "private": true
+}

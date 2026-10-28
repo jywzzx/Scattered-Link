@@ -1,0 +1,44 @@
+# 仓库根目录 .gitignore
+#
+# 原则：源码入库，二进制与产物不入库。
+# 内核（engine/）、依赖（lib/*.jar）、打包产物（release/）体积大且可重新获取。
+
+# ── 前端 ──
+sparsa-desktop/node_modules/
+sparsa-desktop/dist/
+sparsa-desktop/release/
+sparsa-desktop/.npm-cache/
+sparsa-desktop/*.log
+
+# ── 后端：build 目录整体忽略，仅放行脚本与图标 ──
+# 该目录同时存放构建脚本与大量中间产物（jpackage 输出 149 MB、stage2 160 MB、
+# 以及一批调试用的临时 txt），逐条排除容易漏，改为白名单方式。
+LANLink-v2/engine/
+LANLink-v2/lib/*.jar
+LANLink-v2/release/
+LANLink-v2/dist/
+LANLink-v2/build/*
+!LANLink-v2/build/*.py
+!LANLink-v2/build/*.ps1
+!LANLink-v2/build/icon.ico
+
+# 发布用的 token 临时文件，绝不能入库
+LANLink-v2/build/_tok.tmp
+
+# ── 前端构建中间目录 ──
+sparsa-desktop/build-tmp/
+
+# ── 历史存档与分发用原始安装包 ──
+LANLink/node_modules/
+电脑软件/
+手机软件/
+
+# ── 本地元数据与临时探针 ──
+.idea/
+.workbuddy/
+test/
+
+# ── 系统 ──
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,13 @@
+{
+  "name": "LANLink 异地局域网联机",
+  "short_name": "LANLink",
+  "description": "无需注册的点对点异地局域网联机工具",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#4f46e5",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+dist/
+dist-electron/
+release/
+.npm-cache/
+*.log
+install.log
+build.log
+smoke*.log
+verify.log
+
+# 本地环境
+.env.local
+.env.*.local
+.vscode/
+.idea/
+
+# 系统
+Thumbs.db
+desktop.ini
+.DS_Store

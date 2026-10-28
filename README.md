@@ -76,10 +76,7 @@ java -cp "build/test-classes;build/classes;lib/zxing-core-3.5.3.jar" lanlink.Tes
 - [同网络联机测试流程](sparsa-desktop/docs/08-同网络联机测试流程.md)
 - [移除 Swing 的边界与步骤](sparsa-desktop/docs/09-移除Swing的边界与步骤.md)
 
-## 四、一个必须知道的约定
-
-对外品牌是 Sparsa 与零星，但配置文件里的 `network_name` 仍然是 `lanlink`。
-它是与 EasyTier 内核、以及已导入配置的手机端之间的协议标识，改动会让旧配置全部失联。
+与 EasyTier 内核、以及已导入配置的手机端之间的协议标识，改动会让旧配置全部失联。
 
 ## 五、许可
 
